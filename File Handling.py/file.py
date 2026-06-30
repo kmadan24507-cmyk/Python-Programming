@@ -157,3 +157,37 @@ if word in data:
     print(f"{word} is found in file")
 else:
     print(f"{word} is not found in file")
+# 28 ---> COUNT OCCURENCES OF A WORD
+word = input("Enter a word : ")
+with open("1.txt","r") as f:
+    data = f.read()
+print(data.count(word))
+# 29 ---> REPLACE A WORD
+old = "New"
+new = "new"
+with open("1.txt","r") as f:
+    data = f.read()
+data = data.replace(old,new)
+with open("1.txt","w") as f1:
+    f1.write(data)
+# 30 ---> REMOVE A WORD
+word = "new"
+with open("1.txt","r") as f:
+    data = f.read()
+data = data.replace(word,"")
+print(data)
+# 31 ---> ENCRYPT A FILE
+with open("1.txt","r") as f:
+    data = f.read()
+enc = ""
+for i in data:
+    enc+=chr(ord(i)+3)
+with open("encrypt.txt","w") as f1:
+    f1.write(enc)
+# 32 ---> DECRYPT A FILE
+with open("encrypt.txt","r") as f:
+    data = f.read()
+dec = ""
+for i in data:
+   dec+=chr(ord(i)-3)
+print(dec)
