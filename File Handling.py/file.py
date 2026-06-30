@@ -149,3 +149,11 @@ with open("1.txt","r") as f:
 print(f"Uppercase = {data.upper()}")
 print(f"Lowercase = {data.lower()}")
 print(f"Swapcase = {data.swapcase()}")
+# 27 ---> SEARCH FOR A WORD
+word = input("Enter a word : ")
+with open("1.txt","r") as f:
+    data = f.read()
+if word in data:
+    print(f"{word} is found in file")
+else:
+    print(f"{word} is not found in file")
