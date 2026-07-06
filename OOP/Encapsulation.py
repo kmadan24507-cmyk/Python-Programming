@@ -96,3 +96,104 @@ b.deposit(1000)
 print(b.get_balance())
 b.withdraw(90)
 print(b.get_balance())
+# 7 --->
+class Student:
+    def __init__(self):
+        self.__marks = 0
+    @property      # PROPERTY GETTER = Allows you to use methods like variables
+    def marks(self):
+        return self.__marks
+    @marks.setter
+    def marks(self,value):
+        if 0 <= value <= 100:
+          self.__marks = value
+        else:
+            print("Invalid Marks!")
+s = Student()
+s.marks = 90
+print(f"Marks = {s.marks}")
+# 8 --->
+class Employee:
+    def __init__(self):
+        self.__salary = 0
+    @property
+    def salary(self):
+        return self.__salary
+    @salary.setter
+    def salary(self,amount):
+        if amount >= 0:
+            self.__salary =  amount
+        else:
+            print("Invalid Salary")
+e = Employee()
+e.salary = 100000
+print(f"Employee Salary = {e.salary}")
+# 9 ---> 
+class Bank:
+    def __init__(self):
+        self.__balance = 0
+    @property
+    def balance(self):
+        return self.__balance
+    def deposit(self,amount):
+        if amount >= 0:
+            self.__balance+=amount
+        else:
+            print("Invalid Money")
+    def withdraw(self,amount):
+        if amount < 0:
+            print("Invalid Amount")
+        elif amount > self.__balance:
+            print("Insufficient Money")
+        else:
+            self.__balance-=amount
+b = Bank()
+b.deposit(999)
+print(b.balance)
+b.withdraw(99)
+print(b.balance)
+# 10 ---> 
+class BankAccount:
+    def __init__(self,acc_num,holder_name,balance):
+        self.__acc_num = acc_num
+        self.__holder_name = holder_name
+        self.__balance = balance
+    def deposit(self,amount):
+        if amount > 0:
+            self.__balance+=amount
+            print(f"${amount} deposited successfully")
+        else:
+            print("Invalid Deposit Amount")
+    def withdraw(self,amount):
+        if amount <= 0:
+            print("Invalid Deposit Money")
+        elif amount <= self.__balance:
+            self.__balance-=amount
+            print(f"${amount} withdrawn successfully")
+        else:
+            print("Insufficient Funds")
+    def check_balance(self):
+        print(f"{self.__holder_name}'s balance = ${self.__balance}")
+    def transfer_money(self,other_account,amount):
+        if amount <= 0:
+            print("Invalid Transfer Amount")
+        elif amount <= self.__balance:
+            self.__balance-=amount
+            other_account.__balance+=amount
+            print(f"${amount} transfered successfully")
+        else:
+            print("Insufficient Balance")
+b1 = BankAccount("1234","Madan Kumar",400)
+b2 = BankAccount("4567","Dilip Kumar",900)
+b1.check_balance()
+b2.check_balance()
+b1.deposit(100)
+b2.deposit(100)
+b1.check_balance()
+b2.check_balance()
+b1.withdraw(100)
+b2.withdraw(100)
+b1.check_balance()
+b2.check_balance()
+b1.transfer_money(b2,100)
+b2.check_balance()
