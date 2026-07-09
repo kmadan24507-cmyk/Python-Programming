@@ -1,0 +1,218 @@
+# POLYMORPHISM = Polymorphism means many forms
+#                The Same Method name can behave differently for different objects.
+# PROBLEMS
+# 1 ---> 
+class Animal:
+    def sound(self):
+        print("Animal Make A Sound")
+class Dog(Animal):
+    def sound(self):
+        print("Dog Barks")
+d = Dog()
+d.sound()
+# 2 --->
+class Vehicle:
+    def start(self):
+        print("Vehicle Starts")
+class Car(Vehicle):
+    def start(self):
+        print("Car Starts with a key")
+c = Car()
+c.start()
+# 3 --->
+class Appliance:
+    def operate(self):
+        print("Appliance Is Operating")
+class WashingMachine(Appliance):
+    def operate(self):
+     print("Washing Machine is washing clothes.")
+class Refrigerator(Appliance):
+    def operate(self):
+        print("Refrigerator is cooling food.")
+w = WashingMachine()
+r = Refrigerator()
+w.operate()
+r.operate()
+# 4 --->
+class Animal:
+    def sound(self):
+        print("Animal Make A Sound")
+class Dog(Animal):
+    def sound(self):
+        print("Dog Barks")
+class Cat(Animal):
+    def sound(self):
+        print("Cat Meows")
+d = Dog()
+c = Cat()
+d.sound()
+c.sound()
+# 5 --->
+class Shape:
+    def area(self):
+        print("Calculating area.")
+class Circle(Shape):
+    def area(self):
+        print("Area of Circle = πr²")
+class Rectangle(Shape):
+    def area(self):
+        print("Area of Rectangle = length × breadth")
+circle = Circle()
+rectangle = Rectangle()
+circle.area()
+rectangle.area()
+# 6 ---> DUCK TYPING
+class Bird:
+    def fly(self):
+        print("Bird Is Flying")
+class Airplane:
+    def fly(self):
+        print('Airplane Is Flying')
+def start_flyiing(flies):
+    flies.fly()
+b = Bird()
+a = Airplane()
+start_flyiing(b)
+start_flyiing(a)
+# 7 ---> Operator Overloading
+class Box:
+    def __init__(self,value):
+        self.value = value
+    def __add__(self, other):
+        return self.value + other.value
+b1 = Box(10)
+b2 = Box(20)
+print(b1+b2)
+# 8 ---> 
+class Number:
+    def __init__(self,value):
+        self.value = value
+    def __sub__(self, other):
+        return self.value - other.value
+n1 = Number(10)
+n2 = Number(20)
+print(n1-n2)
+# 9 --->
+class Number:
+    def __init__(self,value):
+        self.value = value
+    def __mul__(self, other):
+        return self.value * other.value
+n1 = Number(10)
+n2 = Number(20)
+print(n1*n2)
+# 10 --->
+class Number:
+    def __init__(self,value):
+        self.value = value
+    def __truediv__(self, other):
+        return self.value / other.value
+n1 = Number(10)
+n2 = Number(20)
+print(n1/n2)
+# 11 --->
+class Person:
+    def __init__(self,age):
+        self.age = age
+    def __eq__(self, value):
+        return self.age == value.age
+n1 = Person(1)
+n2 = Person(1)
+print(n1 == n2)
+# 12 --->
+class Student:
+    def __init__(self,name):
+        self.name = name
+    def __str__(self):
+        return f"Student Name = {self.name}"
+s = Student("K.Madan Kumar")
+print(s)
+# 13 --->
+class Book:
+    def __init__(self,pages):
+        self.pages = pages
+    def __len__(self):
+        return self.pages
+b = Book(7)
+print(len(b))
+# 14 --->
+class Light:
+    def __init__(self,status):
+        self.status = status
+    def __bool__(self):
+        return self.status
+l = Light(True)
+print(bool(l))
+# 15 --->
+class Employee:
+    def __init__(self,name):
+        self.name = name
+    def __repr__(self):
+        return f"Employee('{self.name})"
+e = Employee("Madan")
+print(repr(e))
+# 16 --->
+class Classroom:
+    def __init__(self,students):
+        self.students = students
+    def __len__(self):
+        return len(self.students)
+c = Classroom(["Madan","Fahhh","Kumar0"])
+print(len(c))
+# 17 --->
+class Wallet:
+    def __init__(self,balance):
+        self.balance = balance
+    def __bool__(self):
+        return self.balance > 0
+w = Wallet(900)
+print(bool(w))
+# 18 --->
+class Student:
+    def __init__(self,name,marks):
+        self.name = name
+        self.marks = marks
+    def __str__(self):
+        return f"{self.name} - {self.marks}"
+    def __eq__(self, value):
+        return self.marks == value.marks
+s1 = Student("Madan",90)
+s2 = Student('Kumar',91)
+print(s1)
+print(s2)
+print(s1 == s2)
+# 19 --->
+class Book:
+    def __init__(self,title,pages):
+        self.title = title
+        self.pages = pages
+    def __str__(self):
+        return self.title
+    def __len__(self):
+        return self.pages
+b =  Book("Python",100)
+print(len(b))
+# 20 --->
+class Wallet:
+    def __init__(self,balance):
+        self.balance = balance
+    def __bool__(self):
+        return self.balance > 0
+    def __str__(self):
+        return f"Balance = {self.balance}"
+w = Wallet(100)
+print(w)
+print(bool(w))
+# 21 --->
+class Box:
+    def __init__(self,value):
+        self.value = value
+    def __add__(self,other):
+        return self.value + other.value
+    def __str__(self):
+        return f"Box({self.value})"
+b1 = Box(12)
+b2 = Box(8)
+print(b1)
+print(b2)
+print(b1+b2)
