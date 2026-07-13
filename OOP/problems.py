@@ -214,3 +214,421 @@ a.sound = "Barks"
 a.display()
 a.make_sound()
 a.birthday()
+# 11 --->
+class Rectangle:
+    def display(self,length,width):
+        self.length = length
+        self.width  = width
+        print(f"Length = {self.length}")
+        print(f"Width = {self.width}")
+    def area(self):
+        print(f"Area = {self.length} * {self.width}")
+    def perimeter(self):
+        print(f"Perimeter = {2 * (self.length + self.width)}")
+    def is_square(self):
+        if self.length == self.width:
+            print("This Is A square")
+        else:
+            print("This Is A Rectangle")
+r = Rectangle()
+r.display(10,20)
+# r.display(10,10)
+r.area()
+r.perimeter()
+r.is_square()
+# 12 --->
+class Student:
+    def display(self):
+        print(f"Name = {self.name}")
+        print(f"Marks - 1 = {self.mark_1}")
+        print(f"Marks - 2 = {self.mark_2}")
+        print(f"Marks - 3 = {self.mark_3}")
+    def total(self):
+        return self.mark_1 + self.mark_2 + self.mark_3
+    def average(self):
+        return round(self.total() / 3,2)
+    def result(self):
+        if self.average() >= 35:
+            print("Pass")
+        else:
+            print("Fail")
+s = Student()
+s.name = "K.Madan Kumar"
+s.mark_1 = 90
+s.mark_2 = 91
+s.mark_3 = 93
+s.display()
+print(f"Total Marks = {s.total()}")
+print(f"Average = {s.average()}")
+s.result()
+# 13 --->
+class Product:
+    def display(self):
+        print(f"Product Name = {self.name}")
+        print(f"Price = {self.price}")
+        print(f"Quantity = {self.quantity}")
+    def total_cost(self):
+        print(f"Total Cost = {self.price * self.quantity}")
+    def discount(self,percent):
+        discount_amount = self.total_cost() * percent / 100
+        final_amount = self.total_cost - discount_amount
+        print(f"Final Amount ={final_amount}")
+p = Product()
+p.name = "Laptop"
+p.price = 5000000
+p.quantity = 4
+p.display()
+p.total_cost()
+p.discount(10)
+# 13 --->
+class Product:
+    def display(self):
+        print(f"Product Name = {self.name}")
+        print(f"Price = {self.price}")
+        print(f"Quantity = {self.quantity}")
+    def total_cost(self):
+        return self.price * self.quantity
+    def discount(self,percent):
+        total = self.total_cost()
+        discount_amount = total * percent / 100
+        final_amount = total - discount_amount
+        print(f"Final Amount ={final_amount}")
+    def stock_status(self):
+      if self.quantity >= 10:
+        print("In Stock")
+      else:
+        print("Low Stock")
+p = Product()
+p.name = "Laptop"
+p.price = 5000000
+p.quantity = 4
+p.display()
+p.total_cost()
+p.discount(10)
+p.stock_status()
+# 14 --->
+class LibraryBook:
+    def display(self):
+        print(f"Title = {self.title}")
+        print(f"Author = {self.author}")
+        print(f"Price = {self.price}")
+        if self.is_issued:
+            print(f"Staus = Issued")
+        else:
+            print(f"Status = Available")
+    def issue_book(self):
+        if not self.is_issued:
+            self.is_issued = True
+            print("Book Issued Successfully")
+        else:
+            print("Book Already Issued")
+    def return_book(self):
+        if self.is_issued:
+            is_issued = False
+            print("Book Returned Successfully")
+        else:
+            print("Book Was Not Issued")
+    def change_price(self,new_price):
+        self.price = new_price
+        print("Price Updated Successfully")
+l = LibraryBook()
+l.title = "Python Programming"
+l.author = "K.Madan Kumar"
+l.price = 890
+l.is_issued = False
+l.display()
+l.issue_book()
+l.display()
+l.issue_book()
+l.return_book()
+l.display()
+l.change_price(900)
+l.display()
+# B ---> Constructors (__init__)
+class Student:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def display(self):
+        print(f"Name : {self.name}")
+        print(f"Age  : {self.age}")
+s = Student("Madan",19)
+s.display()
+# 1 --->
+class Car:
+    def __init__(self,brand,model,price):
+        self.brand = brand
+        self.model = model
+        self.price = price
+    def display(self):
+        print(f"Brand  : {self.brand}")
+        print(f"Model  : {self.model}")
+        print(f"Price  : ${self.price}")
+    def discount(self,percent):
+        discount_ = self.price * percent / 100
+        final_price = self.price - discount_
+        print(f"Original Price   : {self.price}")
+        print(f"Discount         : {percent}")
+        print(f"Final Price      : {final_price}")
+c = Car("Toyota","Corolla",1500000)
+c.display()
+c.discount(10)
+# 2 --->
+class BankAccount:
+    def __init__(self,account_number,holder_name,balance):
+        self.account_number = account_number
+        self.holder_name = holder_name
+        self.balance = balance
+    def display(self):
+        print(f"Account Number   :   {self.account_number}")
+        print(f"Holder Name      :   {self.holder_name}")
+        print(f"Balance          :   {self.balance}")
+    def deposit(self,amount):
+        if amount > 0:
+            self.balance+=amount
+            print(f"${amount} Deposited Successfully")
+            print(f"Current Balance  : ${self.balance}")
+        else:
+            print("Amount Must Be Positive")
+    def withdraw(self,amount):
+        if amount > 0:
+            self.balance-=amount
+            print(f"${amount} Withdawn Successfully")
+            print(f"Current Balance : {self.balance}")
+        elif amount > self.balance:
+            print("Insufficient Funds")
+        else:
+            print("Amount Must be Positive")
+    def transfer(self,reciever,amount):
+        if amount > self.balance:
+            print("Transfer Failed - Insufficient Balance")
+        elif amount < 0 :
+            print("Amount Must Be Positive")
+        else:
+            self.balance-=amount
+            reciever.balance+=amount
+            print(f"{amount} Transfered Successfully")
+            print(f"Current Balance = {self.balance}")
+b1 = BankAccount(1001,"K.Madan Kumar",200)
+b2 = BankAccount(1002,"K.Dilip Kumar",200)
+b1.display()
+b2.display()
+b1.withdraw(100)
+b1.transfer(b2,100)
+b1.display()
+b2.display()
+# 3 --->
+class ShoppingCart:
+    def __init__(self,product_name,price,quantity):
+        self.product_name = product_name
+        self.price = price
+        self.quantity = quantity
+    def display(self):
+        print(f"Product Name   : {self.product_name}")
+        print(f"Price          : {self.price}")
+        print(f"Quantity       : {self.quantity}")
+    def total_bill(self):
+        return self.price * self.quantity
+    def discount(self,percent):
+        total = self.total_bill()
+        discount_amount = total * percent / 100
+        final_bill = total - discount_amount
+        print(f"Discount   :  {percent}")
+        print(f"Final Bill :  {final_bill}")
+        return final_bill
+    def gst(self,percent):
+        final_bill = self.discount(10)
+        gst_amount = final_bill * 18/100
+        amount_after_gst = final_bill + gst_amount
+        print(f"GST  : {gst_amount}")
+        print(f"Amount After GST : {amount_after_gst}")
+    def change_quantity(self,new_quantity):
+        self.quantity = new_quantity
+        print("Quantity Updated Successfully")
+c = ShoppingCart("laptop",200,2)
+c.display()
+c.total_bill()
+c.discount(10)
+c.gst(10)
+c.change_quantity(4)
+c.display()
+c.total_bill()
+# 4 --->
+class ATM:
+    def __init__(self,account_holder,pin,balance):
+        self.account_holder = account_holder
+        self.pin = pin
+        self.balance = balance
+    def display(self):
+        print(f"Account Holder Name  : {self.account_holder}")
+        print(f"Balance              : {self.balance}")
+    def check_pin(self,entered_pin):
+        if self.pin == entered_pin:
+            print("PIN Verified")
+        else:
+            print("Invalid PIN")
+    def deposit(self,entered_pin,amount):
+        if self.pin == entered_pin:
+            if amount <= 0:
+                print("Transaction Failed")
+            else:
+                self.balance+=amount
+                print(f"{amount} Deposited Successfully")
+        else:
+            print("Invalid PIN")
+    def withdraw(self,entered_pin,amount):
+        if self.pin == entered_pin:
+           if amount <= 0:
+            print("Amount Must be Positive")
+           elif amount > self.balance:
+            print("Amount Must not Exceed Balance")
+           else:
+               self.balance-=amount
+               print(f"{amount} Withdrawn Successfully")
+    def change_pin(self,old_pin,new_pin):
+        if self.pin == old_pin:
+            self.pin = new_pin
+            print("PIN Changed Successfully")
+        else:
+            print("Incorrect Old PIN")
+a = ATM("K.Madan Kumar",1234,100)
+a.display()
+a.deposit(1234,100)
+a.withdraw(1234,10)
+a.change_pin(1234,5678)
+a.withdraw(5678,10)
+a.display()
+# 5 --->
+class Library:
+    def __init__(self,book_name,author,price,available_copies):
+        self.book_name = book_name
+        self.author = author
+        self.price = price
+        self.available_copies = available_copies
+    def display(self):
+        print(f"Book Name        : {self.book_name}")
+        print(f"Author           : {self.author}")
+        print(f"Price            : {self.price}")
+        print(f"Available Copies : {self.available_copies}")
+    def borrow_book(self,quantity):
+        if quantity <= 0:
+            print("Invalid Quantity")
+        elif quantity > self.available_copies:
+            print("Not Enough Copies Available")
+        else:
+            self.available_copies-=quantity
+            print(f"{quantity} Books Borrowed Successfully")
+            print(f"Remaining Copies  : {self.available_copies}")
+    def return_book(self,quantity):
+        if quantity <= 0:
+            print("Invalid Quantity")
+        else:
+            self.available_copies+=quantity
+            print(f"{quantity} Books Returned Successfully")
+            print(f"Available Copies  : {self.available_copies}")
+    def update_price(self,new_price):
+        self.price = new_price
+        print("Price Updated Successfully")
+        print(f"New price : {self.price}")
+    def book_value(self):
+        return self.price * self.available_copies
+l = Library("Python","Eric",850,5)
+l.display()
+l.borrow_book(2)
+l.return_book(1)
+l.update_price(900)
+print(f"Total Book value  : ${l.book_value()}")
+l.display()
+# 6 --->
+class Order:
+    def __init__(self,order_id,customer_name,product_name,price,quantity):
+        self.order_id = order_id
+        self.customer_name = customer_name
+        self.product_name = product_name
+        self.price = price
+        self.quantity = quantity
+        self.order_status = "Pending"
+    def display(self):
+        print(f"Order ID      : {self.order_id}")
+        print(f"Customer      : {self.customer_name}")
+        print(f"Product       : {self.product_name}")
+        print(f"Price         : {self.price}")
+        print(f"Quantity      : {self.quantity}")
+        print(f"Status        : {self.order_status}")
+    def total_amount(self):
+        return self.price * self.quantity
+    def apply_discount(self,percent):
+        total = self.total_amount()
+        discount = total * percent / 100
+        final_amount = total - discount
+        return final_amount
+    def add_gst(self,percent,discount_percent):
+        final_amount = self.apply_discount(discount_percent)
+        gst_amount = final_amount * percent / 100
+        grand_total = final_amount + gst_amount
+        print(f"GST   : ${gst_amount}")
+        print(f"Grand Total  : ${grand_total}")
+    def confirm_order(self):
+        if self.order_status == "Pending":
+          self.order_status = "Confirmed"
+          print("Order Confirmed Successfully")
+        elif self.order_status == "Confirmed":
+            print("Order Already Confirmed")
+        else:
+            print("?")
+    def cancel_order(self):
+        if self.order_status == "Confirmed":
+            self.order_status = "Cancelled"
+            print("Order Cancelled Successfully")
+        else:
+            print("Cannot Cancel Pending Order")
+o = Order(101,"Madan","Laptop",500,2)
+o.display()
+print(o.total_amount())
+print(o.apply_discount(10))
+o.add_gst(18,10)
+o.confirm_order()
+o.cancel_order()
+o.display()
+# 7 --->
+class Course:
+    def __init__(self,course_name,course_fee,available_seats):
+        self.course_name = course_name
+        self.course_fee = course_fee
+        self.available_seats = available_seats
+    def display(self):
+        print(f"Course Name     : {self.course_name}")
+        print(f"Course Fee      : {self.course_fee}")
+        print(f"Available Seats : {self.available_seats}")
+class Student:
+    def __init__(self,student_name,student_id,balance):
+        self.student_name = student_name
+        self.student_id = student_id
+        self.balance = balance
+    def display(self):
+        print(f"Student Name    : {self.student_name}")
+        print(f"Student Id      : {self.student_id}")
+        print(f"Balance         : {self.balance}")
+    def enroll(self,course):
+        if course.available_seats == 0:
+            print("Course Full")
+        elif self.balance < course.course_fee:
+            print('Insufficient Balance')
+        else:
+            self.balance-=course.course_fee
+            course.available_seats-=1
+            print('Enrollment Successful')
+    def add_balance(self,amount):
+        self.balance+=amount
+        print(f"Updated Balance  : {self.balance}")
+c = Course('Python',50,2)
+madan = Student("Madan",101,70)
+dilip = Student("Dilip",102,40)
+c.display()
+madan.display()
+madan.enroll(c)
+c.display()
+madan.display()
+dilip.add_balance(20)
+dilip.enroll(c)
+c.display()
