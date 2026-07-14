@@ -632,3 +632,257 @@ madan.display()
 dilip.add_balance(20)
 dilip.enroll(c)
 c.display()
+# CHAPTER C --->  INHERITANCE
+# 1 --->
+class Person:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def display(self):
+        print(f"Name   : {self.name}")
+        print(f"Age    : {self.age}")
+class Student(Person):
+    def __init__(self,name,age,student_id):
+        super().__init__(name,age)
+        self.student_id = student_id
+    def display_student(self):
+        print(f"Student ID   : {self.student_id}")
+s = Student("Madan",19,101)
+s.display()
+s.display_student()
+# 2 --->
+class Vehiicle:
+    def __init__(self,brand,model):
+        self.brand = brand
+        self.model = model
+    def display_vehicle(self):
+        print(f"Brand    :{self.brand}")
+        print(f"Model    :{self.model}")
+class Car(Vehiicle):
+    def __init__(self, brand, model,fuel_type):
+        super().__init__(brand, model)
+        self.fuel_type = fuel_type
+    def display_car(self):
+        print(f"Fuel Type   :   {self.fuel_type}")
+c = Car("Toyota","Fortuner","Diesel")
+c.display_vehicle()
+c.display_car()
+# 3 --->
+class Animal:
+    def __init__(self,name,species):
+        self.name = name
+        self.species = species
+    def display_animal(self):
+        print(f"Name   : {self.name}")
+        print(f"Species: {self.species}")
+class Dog(Animal):
+    def __init__(self, name, species,sound):
+        super().__init__(name, species)
+        self.sound = sound
+    def bark(self):
+        print(f"Tommy says {self.sound}")
+d = Dog("Tommy","Dog","Woof Woof")
+d.display_animal()
+d.bark()
+#4 --->
+class Employee:
+    def __init__(self,name,salary):
+        self.name = name
+        self.salary = salary
+    def display_employee(self):
+        print(f"Name     : {self.name}")
+        print(f"Salary   : {self.salary}")
+class Manager(Employee):
+    def __init__(self, name, salary,department):
+        super().__init__(name, salary)
+        self.department = department
+    def display_manager(self):
+        print(f"Department   : {self.department}")
+m = Manager("Madan",49,"IT")
+m.display_employee()
+m.display_manager()
+# 5 --->
+class Person:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def display_person(self):
+        print(f"Name   : {self.name}")
+        print(f"Age    : {self.age}")
+class Employee(Person):
+    def __init__(self, name, age,salary):
+        super().__init__(name, age)
+        self.salary = salary
+    def display_employee(self):
+        print(f"Salary  : ₹{self.salary}")
+class Manager(Employee):
+    def __init__(self, name, age, salary,department):
+        super().__init__(name, age, salary)
+        self.department = department
+    def display_manager(self):
+        print(f"Department   : {self.department}")
+m = Manager("Madan",30,50000,"IT")
+m.display_person()
+m.display_employee()
+m.display_manager()
+# 6 --->
+class Animal:
+    def __init__(self,name):
+        self.name = name
+    def make_sound(self):
+        print("Some generic animal sound")
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+    def make_sound(self):
+        print(f"{self.name} says Woof Woof")
+d = Dog("Tommy")
+d.make_sound()
+# 7 --->
+class Employee:
+    def __init__(self,name,salary):
+        self.name = name
+        self.salary = salary
+    def display(self):
+        print(f"Name    : {self.name}")
+        print(f"Salary  : {self.salary}")
+class Manager(Employee):
+    def __init__(self, name, salary,department):
+        super().__init__(name, salary)
+        self.department = department
+    def display(self):
+        super().display()
+        print(f"Department  : {self.department}")
+m = Manager("K.Madan Kumar",50000,"IT")
+m.display()
+# 8 --->
+class Animal:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def display(self):
+        print(f"Name   : {self.name}")
+        print(f"Age    : {self.age}")
+class Dog(Animal):
+    def __init__(self, name, age,breed):
+        super().__init__(name, age)
+        self.breed = breed
+    def dog_info(self):
+        print(f"Breed   : {self.breed}")
+class Cat(Animal):
+    def __init__(self, name, age,color):
+        super().__init__(name, age)
+        self.color = color
+    def cat_info(self):
+        print(f"Color   : {self.color}")
+d = Dog("Chimtu",3,"Kukka")
+c = Cat("Pilli",2,"White")
+d.display()
+d.dog_info()
+c.display()
+c.cat_info()
+# 9 --->
+class Father:
+    def __init__(self,father_name):
+        self.father_name = father_name
+    def father_info(self):
+        print(f"Father   : {self.father_name}")
+class Mother:
+    def __init__(self,mother_name):
+        self.mother_name = mother_name
+    def mother_info(self):
+        print(f"Mother   : {self.mother_name}")
+class Child(Father,Mother):
+    def __init__(self, father_name,mother_name,child_name):
+        Father.__init__(self,father_name)
+        Mother.__init__(self,mother_name)
+        self.child_name = child_name
+    def child_info(self):
+        print(f"Child  : {self.child_name}")
+c = Child("Ram","Sita","Lava Kusa")
+c.father_info()
+c.mother_info()
+c.child_info()
+# 10 --->
+class Account:
+    def __init__(self,account_number,holder_name,balance):
+        self.account_number = account_number
+        self.holder_name = holder_name
+        self.balance = balance
+    def display(self):
+        print(f"Account Number   : {self.account_number}")
+        print(f"Holder Name      : {self.holder_name}")
+        print(f"Balance          : {self.balance}")
+    def deposit(self,amount):
+        if amount <= 0:
+            print("Invalid Amount")
+        else:
+            self.balance+=amount
+            print(f"{amount} Deposited Successfully")
+    def withdrawn(self,amount):
+        if amount <= 0:
+            print("Invalid Amount")
+        elif amount > self.balance:
+            print("Insufficient Balance")
+        else:
+            self.balance-=amount
+            print(f"{amount} Withdrawn Successfully")
+class SavingsAccount(Account):
+    def __init__(self, account_number, holder_name, balance,interest_rate):
+        super().__init__(account_number, holder_name, balance)
+        self.interest_rate = interest_rate
+    def calculate_interest(self):
+        interest = self.balance * self.interest_rate / 100
+        print(f"Interest    :  {interest}")
+    def add_interest(self):
+        interest = self.balance * self.interest_rate / 100
+        self.balance+=interest
+        print("Interest Added Successfully")
+        print(f"Current balance    : {self.balance}")
+s = SavingsAccount(1001,"K.Madan Kumar",1000,5)
+s.display()
+s.deposit(200)
+s.withdrawn(100)
+s.calculate_interest()
+s.add_interest()
+s.display()
+# 11 --->
+class User:
+    def __init__(self,user_id,name):
+        self.user_id = user_id
+        self.name = name
+    def display_user(self):
+        print(f"User ID  : {self.user_id}")
+        print(f"Name     : {self.name}")
+class Customer(User):
+    def __init__(self, user_id, name,cart_value,membership):
+        super().__init__(user_id, name)
+        self.cart_value = cart_value
+        self.membership = membership
+    def display_customer(self):
+        print(f"Cart Value   : {self.cart_value}")
+        print(f"MemberShip   : {self.membership}")
+    def apply_discount(self):
+        if self.membership == "Silver":
+            discount = 5
+        elif self.membership == "Gold":
+            discount = 10
+        elif self.membership == "Platinum":
+            discount = 20
+        else:
+            discount = 0
+        discount_amount = self.cart_value * discount / 100
+        final_amount = self.cart_value - discount_amount
+        return final_amount
+    def add_gst(self):
+        amount = self.apply_discount()
+        gst = amount * 18 / 100
+        grand_total = amount + gst
+        print(f"GST         : {gst}")
+        print(f"Grand Total : {grand_total}")
+c = Customer(101,"Madan",5000,"Gold")
+c.display_user()
+c.display_customer()
+amount = c.apply_discount()
+print(f"Amount After Discount  : ₹{amount}")
+c.add_gst()
