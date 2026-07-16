@@ -886,3 +886,325 @@ c.display_customer()
 amount = c.apply_discount()
 print(f"Amount After Discount  : ₹{amount}")
 c.add_gst()
+# 12 --->
+class Vehicle:
+    def __init__(self,brand,model,price):
+        self.brand = brand
+        self.model = model
+        self.price = price
+    def display(self):
+        print(f"Brand   : {self.brand}")
+        print(f"Model   : {self.model}")
+        print(f"Price   : {self.price}")
+    def apply_discount(self,percent):
+        amount =  self.price * percent / 100
+        discount_price = self.price - amount
+        return discount_price
+class Car(Vehicle):
+    def __init__(self, brand, model, price,road_tax_percent):
+        super().__init__(brand, model, price)
+        self.road_tax_percent = road_tax_percent
+    def calculate_road_tax(self,discount_percent):
+        discounted_price = self.apply_discount(discount_percent)
+        road_tax = discounted_price * self.road_tax_percent / 100
+        return road_tax
+    def final_price(self,discount_percent):
+        discount_price = self.apply_discount(discount_percent)
+        road_tax = self.calculate_road_tax(discount_percent)
+        final_Price = discount_price + road_tax
+        return final_Price
+c =  Car("Toyota","Fortuner",1500000,10)
+c.display()
+print(f"Final Price : {c.final_price(10)}")
+# 13 --->
+class Person:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def display_person(self):
+        print(f"Name  : {self.name}")
+        print(f"Age   : {self.age}")
+class Student(Person):
+    def __init__(self, name, age,student_id,mark_1,mark_2,mark_3):
+        super().__init__(name, age)
+        self.student_id = student_id
+        self.mark_1 = mark_1
+        self.mark_2 = mark_2
+        self.mark_3 = mark_3
+    def display_student(self):
+        print(f"Student ID  : {self.student_id}")
+        print(f"Mark 1      : {self.mark_1}")
+        print(f"Mark 2      : {self.mark_2}")
+        print(f"Mark 3      : {self.mark_3}")
+    def total_marks(self):
+        return self.mark_1 + self.mark_2 + self.mark_3
+    def average(self):
+        total = self.total_marks()
+        avg = total / 3
+        return avg
+    def grade(self):
+        avg = self.average()
+        if avg >= 90:
+            return "A+"
+        elif avg >= 80 and avg <= 89:
+            return "A"
+        elif avg >= 70 and avg <= 79:
+            return "B"
+        elif avg >= 60 and avg <= 69:
+            return "C"
+        elif avg < 60:
+            return "Fail"
+        else:
+            return f"Invalid Marks"
+    def scholarship(self):
+        grade_ = self.grade()
+        if grade_ == "A+":
+            print(f"Scholarship For {self.student_id} = ₹50000")
+        elif grade_ == "A":
+            print(f"Scholarship For {self.student_id} = ₹30000")
+        elif grade_ == "B":
+            print(f"Scholarship For {self.student_id} = ₹15000")
+        elif grade_ == "C":
+            print(f"Scholarship For {self.student_id} = ₹0")
+        elif grade_ == "Fail":
+            print(f"Scholarship For {self.student_id} = ₹0")
+        else:
+            print("No Scholarship")
+s = Student("K.Madan Kumar",19,101,90,91,92)
+s.display_person()
+s.display_student()
+print(f"Total Marks   : {s.total_marks()}")
+print(f"Average       : {s.average()}")
+print(f"Grade         : {s.grade()}")
+s.scholarship()
+# CHAPTER D ---> POLYMORPHISM
+# 1 --->
+class Animal:
+    def __init__(self,name):
+        self.name = name
+    def speak(self):
+        print("Some Animal Sound")
+class Dog(Animal):
+    def __init__(self, name,):
+        super().__init__(name)
+    def speak(self):
+        print(f"{self.name} says Woof Woof")
+d = Dog("Chimtu")
+d.speak()
+# 2 --->
+class Vehicle:
+    def __init__(self,brand):
+        self.brand = brand
+    def start(self):
+        print("Vehicle Started")
+class Car(Vehicle):
+    def __init__(self, brand):
+        super().__init__(brand)
+    def start(self):
+        print(f"{self.brand} Car Started")
+c = Car("Toyota")
+c.start()
+# 3 --->
+class Employee:
+    def __init__(self,name,salary):
+        self.name = name
+        self.salary = salary
+    def display(self):
+        print(f"Name       : {self.name}")
+        print(f"Salary     : {self.salary}")
+class Manager(Employee):
+    def __init__(self, name, salary,department):
+        super().__init__(name, salary)
+        self.department = department
+    def display(self):
+        super().display()
+        print(f"Department  : {self.department}")
+m = Manager("Madan",90000,"IT")
+m.display()
+# 4 --->
+class Dog:
+    def speak(self):
+        print("Dog Says Woof")
+class Cat:
+    def speak(self):
+        print("Cat Says Meow")
+class Cow:
+    def speak(self):
+        print("Cow Says Moo")
+def make_sound(animal):
+    animal.speak()
+d = Dog()
+c = Cat()
+cw = Cow()
+make_sound(d)
+make_sound(c)
+make_sound(cw)
+# 5 --->
+class Book:
+    def __init__(self,title,pages):
+        self.title = title
+        self.pages = pages
+    def display(self):
+        print(f"Title    : {self.title}")
+        print(f"Pages    : {self.pages}")
+    def __add__(self, other):
+        return self.pages + other.pages
+b1 = Book("Python",250)
+b2 = Book("Java",250)
+b1.display()
+b2.display()
+print(b1+b2)
+# 6 --->
+class Student:
+    def __init__(self,name,marks):
+        self.name = name
+        self.marks = marks
+    def display(self):
+        print(f"Name   : {self.name}")
+        print(f"Marks  : {self.marks}")
+    def __eq__(self, value):
+        if self.marks == value.marks:
+            return True
+        else:
+            return False
+s1 = Student("Madan", 95)
+s2 = Student("Dilip", 94)
+print(s1 == s2)
+# 7 --->
+class Student:
+    def __init__(self,name,marks):
+        self.name=  name
+        self.marks = marks
+    def __lt__(self, other):
+        return self.marks < other.marks
+s1 = Student("Madan", 80)
+s2 = Student("Dilip", 95)
+print(s1 < s2)
+# 8 --->
+class Student:
+    def __init__(self,name,marks):
+        self.name = name
+        self.marks = marks
+    def __str__(self):
+        return f"Name({self.name}) , Marks({self.marks})"
+s = Student("K.Madan Kumar",89)
+print(s)
+# 9 --->
+class Library:
+    def __init__(self,library_name,books_count):
+        self.library_name = library_name
+        self.books_count = books_count
+    def __len__(self):
+        return self.books_count
+    def __str__(self):
+        return f"Library(Name={self.library_name}, Books={self.books_count})"
+l = Library("Central Library",123)
+print(len(l))
+print(str(l))
+# 10 --->
+class Student:
+    def __init__(self,name,marks):
+        self.name = name
+        self.marks = marks
+    def __gt__(self, other):
+        return self.marks > other.marks
+s1 = Student("Madan",98)
+s2 = Student("Dilip",99)
+print(s1 > s2)
+# 11 --->
+class Library:
+    def __init__(self,books):
+        self.books = books
+    def __contains__(self, item):
+        return item in self.books
+l = Library(["Python","Java","C++"])
+print("Python" in l)
+print("HTML" in l)
+# CHAPTER - E ---> ENCAPSULATION
+# 1 --->
+class Student:
+    def __init__(self,name,age,marks):
+        self.name = name         # PUBLIC
+        self.__marks = marks      # PROTECTED
+        self._age = age         # PRIVATE
+    def display(self):
+        print(f"Name   : {self.name}")
+        print(f"Age    : {self._age}")
+        print(f"Marks  : {self.__marks}")
+s = Student("Madan",19,75)
+s.display()
+# 2 --->
+class BankAccount:
+    def __init__(self,balance):
+        self.__balance = balance
+    def deposit(self,amount):
+        self.__balance+=amount
+    def get_balance(self):
+        return self.__balance
+b = BankAccount(100)
+b.deposit(100)
+print(b.get_balance())
+# 3 --->
+class Student:
+    def __init__(self,marks):
+        self.__marks = marks
+    def set_marks(self,marks):
+        if marks >= 0 and marks <= 100:
+            self.__marks = marks
+        else:
+            print("Invalid Marks")
+    def get_marks(self):
+        return self.__marks
+s = Student(80)
+print(s.get_marks())
+s.set_marks(95)
+print(s.get_marks())
+s.set_marks(120)
+print(s.get_marks())
+# 4 --->
+class Employee:
+    def __init__(self,salary):
+        self.__salary = salary
+    @property
+    def salary(self):
+        return self.__salary
+    @salary.setter
+    def salary(self,value):
+        if value > 0:
+            self.__salary = value
+        else:
+            print("Invalid Salary")
+e = Employee(50000)
+print(e.salary)
+e.salary = 60000
+print(e.salary)
+e.salary = -100
+print(e.salary)
+# 5 --->
+class BankAccount:
+    def __init__(self,balance):
+        self.__balance = balance
+    @property
+    def balance(self):
+        return self.__balance
+    def deposit(self,amount):
+        if amount <= 0:
+            print("Invalid Amount")
+        else:
+            self.__balance+=amount
+            print("Deposited Sucessfully")
+    def withdraw(self,amount):
+        if amount <= 0:
+            print("Invalid Amount")
+        elif amount > self.__balance:
+            print("Insufficient Balance")
+        else:
+            self.__balance-=amount
+            print("Withdrawn Suucessfully")
+b = BankAccount(100)
+print(b.balance)
+b.deposit(100)
+print(b.balance)
+b.withdraw(90)
+print(b.balance)
+b.balance = 1000
